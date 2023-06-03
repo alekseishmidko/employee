@@ -15,12 +15,12 @@ import { useSelector } from "react-redux";
 const Login = () => {
   const navigate = useNavigate();
 
-  // const user = useSelector(selectUser);
-  // React.useEffect(() => {
-  //   if (user) {
-  //     navigate("/");
-  //   }
-  // }, [user, navigate]);
+  const user = useSelector(selectUser);
+  React.useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   const [loginUser, loginUserResult] = useLoginMutation();
   const [error, setError] = React.useState("");
   const onClickLogin = async (data: UserData) => {
@@ -29,6 +29,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       const maybeError = isErrorWithMessage(error);
+      console.log(error, "err");
       if (maybeError) {
         setError(error.data.message);
       } else {

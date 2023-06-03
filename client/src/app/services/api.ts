@@ -3,16 +3,16 @@ import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:3002/api",
-  // prepareHeaders: (headers, { getState }) => {
-  //   const token =
-  //     (getState() as RootState).auth.user?.token ||
-  //     localStorage.getItem("token");
+  prepareHeaders: (headers, { getState }) => {
+    const token =
+      (getState() as RootState).auth.user?.token ||
+      localStorage.getItem("token");
 
-  //   if (token) {
-  //     headers.set("authorization", `Bearer ${token}`);
-  //   }
-  //   return headers;
-  // },
+    if (token) {
+      headers.set("authorization", `Bearer ${token}`);
+    }
+    return headers;
+  },
 });
 
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
