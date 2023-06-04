@@ -36,12 +36,15 @@ const Employees = () => {
       navigate("/login");
     }
   }, [navigate, user]);
+  const goToAddEmployee = () => {
+    navigate(Paths.employeeAdd);
+  };
   return (
     <>
       <Layout>
         <CustomButton
           type="primary"
-          onClick={() => null}
+          onClick={goToAddEmployee}
           icon={<PlusCircleOutlined></PlusCircleOutlined>}
         >
           ADD

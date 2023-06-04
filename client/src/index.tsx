@@ -11,6 +11,8 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Auth from "./features/auth/auth";
 import Employees from "./pages/employees/employees";
+import AddEmployee from "./pages/add-employee/AddEmployee";
+import Status from "./pages/status/Status";
 const router = createBrowserRouter([
   {
     path: Paths.home,
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: Paths.register,
     element: <Register />,
+  },
+  {
+    path: Paths.employeeAdd,
+    element: <AddEmployee />,
+  },
+  {
+    path: `${Paths.status}/:status`,
+    element: <Status />,
   },
 ]);
 const container = document.getElementById("root")!;
