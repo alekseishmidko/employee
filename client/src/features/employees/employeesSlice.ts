@@ -29,5 +29,5 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const selectEmployees = (state: RootState) => state.employees;
+export const selectEmployees = (state: RootState) => state.employees.employees;
 // .employees;
