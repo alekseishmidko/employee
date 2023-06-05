@@ -14,7 +14,7 @@ const {
 
 // api/employees
 router.get("/", auth, all);
-// api/employees:id
+// api/employees/:id
 router.get("/:id", auth, employee);
 //api/employees/add
 router.post("/add", auth, add);

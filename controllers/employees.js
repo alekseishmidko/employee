@@ -61,27 +61,28 @@ const remove = async (req, res) => {
  * @access Private
  */
 const edit = async (req, res) => {
+  const data = req.body;
+  const id = data.id;
   try {
-    const data = req.body;
-    const id = data.id;
-    if (
-      !data.firstName ||
-      !data.lastName ||
-      !data.address ||
-      !data.age ||
-      !data.id
-    ) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
+    // if (
+    //   !data.firstName ||
+    //   !data.lastName ||
+    //   !data.address ||
+    //   !data.age
+    //   ||
+    //   !data.id
+    // ) {
+    //   return res.status(400).json({ message: "All fields are required" });
+    // }
     const employee = await prisma.employee.update({
       where: {
         id,
       },
       data,
     });
-    return res.status(201).json({ message: ` ${data.id} is edit` });
+    res.status(201).json("OK");
   } catch (error) {
-    res.status(400).json({ message: "fault during edit  employee // edit" });
+    res.status(500).json({ message: "fault during edit  employee // edit" });
   }
 };
 
@@ -93,9 +94,10 @@ const edit = async (req, res) => {
 const employee = async (req, res) => {
   try {
     const { id } = req.params;
-    const employee = await prisma.employee.findUnique({ where: { id: id } });
-    console.log(employee);
-    return res.status(201).json({ message: `user ${employee} arrived` });
+    console.log(id);
+    const employee = await prisma.employee.findUnique({ where: { id } });
+    console.log(employee, "employee");
+    return res.status(201).json(employee);
   } catch (error) {
     res.status(400).json({ message: "fault duging get employee // Employee" });
   }
